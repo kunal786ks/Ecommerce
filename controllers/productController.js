@@ -9,13 +9,13 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-// //payment gateway
-// var gateway = new braintree.BraintreeGateway({
-//   environment: braintree.Environment.Sandbox,
-//   merchantId: process.env.BRAINTREE_MERCHANT_ID,
-//   publicKey: process.env.BRAINTREE_PUBLIC_KEY,
-//   privateKey: process.env.BRAINTREE_PRIVATE_KEY,
-// });
+//payment gateway
+var gateway = new braintree.BraintreeGateway({
+  environment: braintree.Environment.Sandbox,
+  merchantId: process.env.BRAINTREE_MERCHANT_ID,
+  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
+  privateKey: process.env.BRAINTREE_PRIVATE_KEY,
+});
 
 export const createProductController = async (req, res) => {
   try {
@@ -108,19 +108,50 @@ export const getSingleProductController = async (req, res) => {
 };
 
 // get photo
+// export const productPhotoController = async (req, res) => {
+//   try {
+//     const product = await productModel.findById(req.params.pid).select("photo");
+//     if (product.photo.data) {
+//       res.set("Content-type", product.photo.contentType);
+//       return res.status(200).send(product.photo.data);
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send({
+//       success: false,
+//       message: "Erorr while getting photo",
+//       error,
+//     });
+//   }
+// };
 export const productPhotoController = async (req, res) => {
   try {
     const product = await productModel.findById(req.params.pid).select("photo");
-    if (product.photo.data) {
+
+    if (!product) {
+      // Handle the case where the product is not found
+      return res.status(404).send({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    if (product.photo && product.photo.data) {
       res.set("Content-type", product.photo.contentType);
       return res.status(200).send(product.photo.data);
+    } else {
+      // Handle the case where the product's photo data is missing
+      return res.status(404).send({
+        success: false,
+        message: "Product photo not found",
+      });
     }
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Erorr while getting photo",
-      error,
+      message: "Error while getting photo",
+      error: error.message, // Send the error message for better clarity
     });
   }
 };
