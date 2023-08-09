@@ -8,6 +8,8 @@ import {
   getOrdersController,
   getAllOrdersController,
   orderStatusController,
+  getAllUsersController,
+  deleteUserController,
 } from "../controllers/authController.js";
 import { isAdmin, isVendor, requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -38,6 +40,11 @@ router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
 router.get("/vendor-auth",requireSignIn,isVendor,(req,res)=>{
   res.status(200).send({ok:true})
 })
+//all users
+router.get("/users",getAllUsersController)
+
+//find by user and delete
+router.delete('/user/:id',deleteUserController)
 //update profile
 router.put("/profile", requireSignIn, updateProfileController);
 

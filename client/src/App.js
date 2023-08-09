@@ -26,6 +26,7 @@ import CartPage from "./pages/CartPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
 import VendorRoute from "./components/Routes/VendorRoute";
 import VendorOrders from "./pages/vendor/VendorOrders";
+import AllVendors from "./pages/Admin/AllVendors";
 function App() {
   return (
     <>
@@ -46,6 +47,7 @@ function App() {
         {/* for the admin */}
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard />} />
+          <Route path="admin/allvendors" element={<AllVendors />} />
           <Route path="admin/create-category" element={<CreateCategory />} />
           <Route path="admin/create-product" element={<CreateProduct />} />
           <Route path="admin/product/:slug" element={<UpdateProduct />} />

@@ -217,6 +217,38 @@ export const getOrdersController = async (req, res) => {
     });
   }
 };
+//all users
+export const getAllUsersController=async(req,res)=>{
+  try{
+    const users=await userModel.find({})
+    res.json(users)
+  }catch(error){
+    console.log(err)
+    res.status(404).send({
+      success: false,
+      message: "Error WHile Geting Orders",
+      error,
+    })
+  }
+}
+//delete specific user
+export const deleteUserController=async(req,res)=>{
+  const {id}=req.params
+  try {
+    await userModel.findByIdAndDelete(id);
+    res.status(200).send({
+      success: true,
+      message: "Vendor Deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while deleting product",
+      error,
+    });
+  }
+}
 //orders
 export const getAllOrdersController = async (req, res) => {
   try {
