@@ -64,6 +64,7 @@ const Orders = () => {
                             alt={p.name}
                             width="100px"
                             height={"100px"}
+                            style={{objectFit:'contain'}}
                           />
                         </div>
                         <div className="col-md-8">

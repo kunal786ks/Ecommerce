@@ -9,7 +9,8 @@ const Policy = () => {
           <img
             src="/images/contactus.jpeg"
             alt="contactus"
-            style={{ width: "100%" }}
+            style={{ width: "100%",objectFit:'contain' }}
+            
           />
         </div>
         <div className="col-md-4">

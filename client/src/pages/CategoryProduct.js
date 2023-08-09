@@ -38,6 +38,7 @@ const CategoryProduct = () => {
                     src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
+                    style={{objectFit:'contain'}}
                   />
                   <div className="card-body">
                     <div className="card-name-price">

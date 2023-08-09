@@ -157,6 +157,7 @@ const UpdateProduct = () => {
                       alt="product_photo"
                       height={"200px"}
                       className="img img-responsive"
+                      style={{objectFit:'contain'}}
                     />
                   </div>
                 )}

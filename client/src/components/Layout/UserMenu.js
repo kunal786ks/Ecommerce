@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 const UserMenu = () => {
+  const [auth]=useAuth();
   return (
     <div>
       <div className="text-center dashboard-menu">
@@ -18,6 +20,12 @@ const UserMenu = () => {
           >
             Orders
           </NavLink>
+         { auth?.user?.role===2 && <NavLink
+            to="/dashboard/vendor/create-product"
+            className="list-group-item list-group-item-action"
+          >
+            Sell Anything
+          </NavLink>}
         </div>
       </div>
     </div>

@@ -44,6 +44,7 @@ const ProductDetails = () => {
           <img
             src={`/api/v1/product/product-photo/${product._id}`}
             className="card-img-top"
+            style={{objectFit:'contain'}}
             alt={product.name}
             height="300"
             width={"350px"}
@@ -78,6 +79,7 @@ const ProductDetails = () => {
                 src={`/api/v1/product/product-photo/${p._id}`}
                 className="card-img-top"
                 alt={p.name}
+                style={{objectFit:'contain'}}
               />
               <div className="card-body">
                 <div className="card-name-price">

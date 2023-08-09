@@ -9,7 +9,7 @@ import {
   getAllOrdersController,
   orderStatusController,
 } from "../controllers/authController.js";
-import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
+import { isAdmin, isVendor, requireSignIn } from "../middlewares/authMiddleware.js";
 
 //router object
 const router = express.Router();
@@ -35,7 +35,9 @@ router.get("/user-auth", requireSignIn, (req, res) => {
 router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ ok: true });
 });
-
+router.get("/vendor-auth",requireSignIn,isVendor,(req,res)=>{
+  res.status(200).send({ok:true})
+})
 //update profile
 router.put("/profile", requireSignIn, updateProfileController);
 

@@ -8,7 +8,7 @@ import moment from "moment";
 import { Select } from "antd";
 const { Option } = Select;
 
-const AdminOrders = () => {
+const VendorOrders = () => {
   const [status, setStatus] = useState([
     "Not Process",
     "Processing",
@@ -19,10 +19,13 @@ const AdminOrders = () => {
   const [changeStatus, setCHangeStatus] = useState("");
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
+  const userId = auth.user._id
+  console.log(userId)
+  // console.log("user",,"type", typeof(auth.user._id))
   const getOrders = async () => {
     try {
       const { data } = await axios.get("/api/v1/auth/all-orders");
-      console.log(data)
+      console.log(data)      
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -51,8 +54,11 @@ const AdminOrders = () => {
         </div>
         <div className="col-md-9">
           <h1 className="text-center">All Orders</h1>
-          {orders?.map((o, i) => {
-            return (
+          {orders?.map((o, i) => (
+
+            // return (
+              userId === o.products[0]?.createdBy && 
+
               <div className="border shadow">
                 <table className="table">
                   <thead>
@@ -88,17 +94,17 @@ const AdminOrders = () => {
                     </tr>
                   </tbody>
                 </table>
-                <div className="container">
+                <div className="container" >
                   {o?.products?.map((p, i) => (
                     <div className="row mb-2 p-3 card flex-row" key={p._id}>
                       <div className="col-md-4">
                         <img
                           src={`/api/v1/product/product-photo/${p._id}`}
+                          style={{objectFit:'contain'}}
                           className="card-img-top"
                           alt={p.name}
                           width="100px"
                           height={"100px"}
-                          style={{objectFit:'contain'}}
                         />
                       </div>
                       <div className="col-md-8">
@@ -110,12 +116,12 @@ const AdminOrders = () => {
                   ))}
                 </div>
               </div>
-            );
-          })}
+            // );
+          ))}
         </div>
       </div>
     </Layout>
   );
 };
 
-export default AdminOrders;
+export default VendorOrders;

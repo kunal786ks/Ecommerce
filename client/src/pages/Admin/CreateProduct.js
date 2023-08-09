@@ -54,7 +54,7 @@ const CreateProduct = () => {
         toast.error(data?.message);
       } else {
         toast.success("Product Created Successfully");
-        navigate("/dashboard/admin/products");
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
@@ -108,6 +108,7 @@ const CreateProduct = () => {
                       alt="product_photo"
                       height={"200px"}
                       className="img img-responsive"
+                      style={{objectFit:'contain'}}
                     />
                   </div>
                 )}

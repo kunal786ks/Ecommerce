@@ -114,6 +114,7 @@ const HomePage = () => {
         className="banner-img"
         alt="bannerimage"
         width={"100%"}
+        style={{objectFit:'contain'}}
       />
       {/* banner image */}
       <div className="container-fluid row mt-3 home-page">
@@ -158,6 +159,7 @@ const HomePage = () => {
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
+                  style={{objectFit:'contain'}}
                 />
                 <div className="card-body">
                   <div className="card-name-price">

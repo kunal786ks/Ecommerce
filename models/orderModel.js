@@ -18,6 +18,10 @@ const orderSchema = new mongoose.Schema(
       default: "Not Process",
       enum: ["Not Process", "Processing", "Shipped", "deliverd", "cancel"],
     },
+    owner:{
+      type:mongoose.Types.ObjectId,
+      ref:'users'
+    }
   },
   { timestamps: true }
 );

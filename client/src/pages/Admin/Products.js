@@ -4,9 +4,11 @@ import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 const Products = () => {
   const [products, setProducts] = useState([]);
-
+  const [auth]=useAuth();
+  console.log(auth.user)
   //getall products
   const getAllProducts = async () => {
     try {
@@ -31,7 +33,7 @@ const Products = () => {
         <div className="col-md-9 ">
           <h1 className="text-center">All Products List</h1>
           <div className="d-flex flex-wrap">
-            {products?.map((p) => (
+            {auth?.user?.role===1 ? products?.map((p) => (
               <Link
                 key={p._id}
                 to={`/dashboard/admin/product/${p.slug}`}
@@ -42,14 +44,37 @@ const Products = () => {
                     src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
+                    style={{objectFit:'contain'}}
                   />
+                  {console.log(p?._id)}
                   <div className="card-body">
                     <h5 className="card-title">{p.name}</h5>
                     <p className="card-text">{p.description}</p>
                   </div>
                 </div>
               </Link>
-            ))}
+            )):(products?.map((p) => (
+              p.createdBy._id===auth.user._id &&
+              <Link
+                key={p._id}
+                to={`/dashboard/admin/product/${p.slug}`}
+                className="product-link"
+              >
+                <div className="card m-2" style={{ width: "18rem" }}>
+                  <img
+                    src={`/api/v1/product/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                    style={{objectFit:'contain'}}
+                  />
+                  {console.log(p?._id)}
+                  <div className="card-body">
+                    <h5 className="card-title">{p.name}</h5>
+                    <p className="card-text">{p.description}</p>
+                  </div>
+                </div>
+              </Link>
+            )))}
           </div>
         </div>
       </div>

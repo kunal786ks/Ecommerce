@@ -24,10 +24,13 @@ import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
+import VendorRoute from "./components/Routes/VendorRoute";
+import VendorOrders from "./pages/vendor/VendorOrders";
 function App() {
   return (
     <>
       <Routes>
+        {/* for the user */}
         <Route path="/" element={<HomePage />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/categories" element={<Categories />} />
@@ -38,7 +41,9 @@ function App() {
           <Route path="user" element={<Dashboard />} />
           <Route path="user/orders" element={<Orders />} />
           <Route path="user/profile" element={<Profile />} />
+          <Route path="vendor/create-product" element={<CreateProduct />} />
         </Route>
+        {/* for the admin */}
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard />} />
           <Route path="admin/create-category" element={<CreateCategory />} />
@@ -47,6 +52,16 @@ function App() {
           <Route path="admin/products" element={<Products />} />
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/orders" element={<AdminOrders />} />
+        </Route>
+        {/* //for the vendor */}
+        <Route path="/dashboard" element={<VendorRoute />}>
+          <Route path="vendor" element={<AdminDashboard />} />
+          <Route path="vendor/create-category" element={<CreateCategory />} />
+          <Route path="vendor/create-product" element={<CreateProduct />} />
+          <Route path="vendor/product/:slug" element={<UpdateProduct />} />
+          <Route path="vendor/products" element={<Products />} />
+          <Route path="vendor/users" element={<Users />} />
+          <Route path="vendor/orders" element={<VendorOrders />} />
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPasssword />} />
