@@ -115,7 +115,7 @@ const CartPage = () => {
                     <p>{p.name}</p>
                     <p>{p.description.substring(0, 30)}</p>
                     <p>Price : {p.price}</p>
-                    <p>Number products :{p.quantity}</p>
+                    <p>{p.quantity>0?`Left Piece : ${p.quantity}`:"Out of stock remove it from cart"}</p>
                   </div>
                   <div className="col-md-4 cart-remove-btn">
                     <button
