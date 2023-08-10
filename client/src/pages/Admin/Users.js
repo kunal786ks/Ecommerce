@@ -46,13 +46,13 @@ useEffect(()=>{
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>All Users</h1>
+            <h1 style={{textAlign:'center',backgroundColor:'blue',color:'white'}}>Vendors List</h1>
             {users?.map((p)=>(
               p.role===2 &&
               <div style={{display:'flex',justifyContent:'space-between',border:'1px dashed black',padding:'10px',marginBottom:'10px'}}>
-                <div>Vendor's Name: {p?.name}</div>
-                <div>Vendor's Name: {p?.email}</div>
-                <div>Joined At:{p?.createdAt}</div>
+                <div style={{fontWeight:'bold'}}>Vendor's Name: {p?.name}</div>
+                <div style={{fontWeight:'bold'}}>Vendor's Email: {p?.email}</div>
+                <div style={{fontWeight:'bold'}}>Joined At:{p?.createdAt}</div>
                 <button className="mx-2 disable" onClick={()=>deleteVendor(p?._id)} >{p?.disabled?"Enable Vendor":"Disable vendor"}</button>
                 </div>
             ))

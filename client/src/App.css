@@ -15,10 +15,8 @@
    box-sizing: border-box;
  }
 
-
-.disable:disabled,
-.disable[disabled]{
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
+.des {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

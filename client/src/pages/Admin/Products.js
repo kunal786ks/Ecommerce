@@ -39,17 +39,20 @@ const Products = () => {
                 to={`/dashboard/admin/product/${p.slug}`}
                 className="product-link"
               >
-                <div className="card m-2" style={{ width: "18rem" }}>
+                <div className="card m-2" style={{width:'500px'}}>
+                  <div  style={{ height: "110px", width:"100px" }} >
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
+                    height={'100%'}
                     style={{objectFit:'contain'}}
                   />
+                  </div>
                   {console.log(p?._id)}
                   <div className="card-body">
                     <h5 className="card-title">{p.name}</h5>
-                    <p className="card-text">{p.description}</p>
+                    <p className="card-text des">{p.description}</p>
                     <p>Added By: {p.createdBy.name}</p>
                   </div>
                 </div>
@@ -71,7 +74,7 @@ const Products = () => {
                   {console.log(p?._id)}
                   <div className="card-body">
                     <h5 className="card-title">{p.name}</h5>
-                    <p className="card-text">{p.description}</p>
+                    <p  className="card-text">{p.description}</p>
                   </div>
                 </div>
               </Link>

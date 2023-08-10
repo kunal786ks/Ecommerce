@@ -103,7 +103,7 @@ const UpdateProduct = () => {
   };
   return (
     <Layout title={"Dashboard - Create Product"}>
-      <div className="container-fluid m-3mx p-3">
+      <div className="container-fluid m-3mx p-3" style={{marginTop:'60px'}}>
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
