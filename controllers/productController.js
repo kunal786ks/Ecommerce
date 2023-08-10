@@ -311,7 +311,27 @@ export const searchProductController = async (req, res) => {
     });
   }
 };
-
+//update the quantity of the 
+export const updateLeftController=async(req,res)=>{
+  const {id}=req.params;
+  const data=await productModel.findById(id);
+  try{
+    await productModel.findByIdAndUpdate(id,{
+     quantity:data.quantity-1 ,
+    })
+    res.status(200).send({
+      success: true,
+      message: "updated stock"
+    })
+  }catch(error){
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while updating quantity ",
+      error,
+    });
+  }
+}
 // similar products
 export const realtedProductController = async (req, res) => {
   try {

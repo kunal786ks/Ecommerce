@@ -44,7 +44,7 @@ const CartPage = () => {
       console.log(error);
     }
   };
-
+  
   //get payment gateway token
   const getToken = async () => {
     try {
@@ -115,6 +115,7 @@ const CartPage = () => {
                     <p>{p.name}</p>
                     <p>{p.description.substring(0, 30)}</p>
                     <p>Price : {p.price}</p>
+                    <p>Number products :{p.quantity}</p>
                   </div>
                   <div className="col-md-4 cart-remove-btn">
                     <button

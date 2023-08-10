@@ -43,6 +43,14 @@ const AdminOrders = () => {
       console.log(error);
     }
   };
+  const updateStock=async(id)=>{
+    try{
+      const {data}=await axios.delete(`/api/v1/product/update/${id}`)
+      console.log(data);
+    }catch(err){
+      console.log(err);
+    }
+  }
   return (
     <Layout title={"All Orders Data"}>
       <div className="row dashboard">
@@ -105,10 +113,12 @@ const AdminOrders = () => {
                         <p>{p.name}</p>
                         <p>{p.description.substring(0, 30)}</p>
                         <p>Price : {p.price}</p>
+                        {o.status==='deliverd' && <button onClick={()=>updateStock(p._id)}>stock</button>}
                       </div>
                     </div>
                   ))}
                 </div>
+                  {console.log(status)}
               </div>
             );
           })}

@@ -13,6 +13,7 @@ import {
   productPhotoController,
   realtedProductController,
   searchProductController,
+  updateLeftController,
   updateProductController,
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
@@ -73,5 +74,8 @@ router.get("/braintree/token", braintreeTokenController);
 
 //payments
 router.post("/braintree/payment", requireSignIn, brainTreePaymentController);
+
+//update the quantity of the product
+router.delete("/update/:id",updateLeftController)
 
 export default router;

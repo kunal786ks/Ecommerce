@@ -20,7 +20,7 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  //get all cat
+  //get all categories
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get("/api/v1/category/get-category");
@@ -36,6 +36,8 @@ const HomePage = () => {
     getAllCategory();
     getTotal();
   }, []);
+
+
   //get products
   const getAllProducts = async () => {
     try {
@@ -48,6 +50,7 @@ const HomePage = () => {
       console.log(error);
     }
   };
+
 
   //getTOtal COunt
   const getTotal = async () => {
@@ -76,7 +79,7 @@ const HomePage = () => {
     }
   };
 
-  // filter by cat
+  // filter by categories
   const handleFilter = (value, id) => {
     let all = [...checked];
     if (value) {

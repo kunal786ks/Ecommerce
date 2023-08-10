@@ -17,6 +17,7 @@ const VendorOrders = () => {
     "cancel",
   ]);
   const [changeStatus, setCHangeStatus] = useState("");
+  const [stock,setStock]=useState(false);
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
   const userId = auth.user._id
@@ -34,7 +35,7 @@ const VendorOrders = () => {
 
   useEffect(() => {
     if (auth?.token) getOrders();
-  }, [auth?.token]);
+  }, [auth?.token,stock]);
 
   const handleChange = async (orderId, value) => {
     try {
@@ -46,6 +47,16 @@ const VendorOrders = () => {
       console.log(error);
     }
   };
+  const updateStock=async(id)=>{
+    try{
+      const {data}=await axios.delete(`/api/v1/product/update/${id}`)
+      setStock(!stock)
+      console.log(data);
+      toast.success(data.message)
+    }catch(err){
+      console.log(err);
+    }
+  }
   return (
     <Layout title={"All Orders Data"}>
       <div className="row dashboard">
@@ -111,6 +122,8 @@ const VendorOrders = () => {
                         <p>{p.name}</p>
                         <p>{p.description.substring(0, 30)}</p>
                         <p>Price : {p.price}</p>
+                        <p>No of items left in stock: {p.quantity}</p>
+                        {p.quantity>0 && o.status==='deliverd' && <button style={{padding:'6px 22px',border:'none',borderRadius:'100px'}}onClick={()=>updateStock(p._id)}>stock</button>}
                       </div>
                     </div>
                   ))}

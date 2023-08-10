@@ -57,7 +57,7 @@ function App() {
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/orders" element={<AdminOrders />} />
         </Route>
-        {/* //for the vendor */}
+        {/* for the vendor */}
         <Route path="/dashboard" element={<VendorRoute />}>
           <Route path="vendor" element={<AdminDashboard />} />
           <Route path="vendor/create-category" element={<CreateCategory />} />
