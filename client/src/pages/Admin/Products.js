@@ -50,6 +50,7 @@ const Products = () => {
                   <div className="card-body">
                     <h5 className="card-title">{p.name}</h5>
                     <p className="card-text">{p.description}</p>
+                    <p>Added By: {p.createdBy.name}</p>
                   </div>
                 </div>
               </Link>
