@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema(
     address: {
       type: {},
       required: true,
+      //created
     },
     answer: {
       type: String,
