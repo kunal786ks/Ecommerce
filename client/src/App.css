@@ -1,0 +1,24 @@
+.disable{
+   padding: 8px 22px;
+   outline: none;
+   border: none;
+   border-radius: 500000000px;
+   margin-bottom: 4px;
+   box-sizing: border-box;
+}
+
+.disable:hover{
+    padding: 8px 22px;
+   outline: 1px solid grey;
+   border-radius: 500000000px;
+   margin-bottom: 4px;
+   box-sizing: border-box;
+ }
+
+
+.disable:disabled,
+.disable[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}

@@ -28,6 +28,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    disabled:{
+      type:Boolean,
+      default:false,
+      required:true,
+    },
     role: {
       type: Number,
       default: 0,

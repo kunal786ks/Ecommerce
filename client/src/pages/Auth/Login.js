@@ -21,6 +21,10 @@ const Login = () => {
         email,
         password,
       });
+      console.log(res)
+      if(res.status===204){
+        return toast.error("You are disabled by admin");
+      }
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
         setAuth({

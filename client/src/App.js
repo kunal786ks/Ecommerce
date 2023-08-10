@@ -27,6 +27,8 @@ import AdminOrders from "./pages/Admin/AdminOrders";
 import VendorRoute from "./components/Routes/VendorRoute";
 import VendorOrders from "./pages/vendor/VendorOrders";
 import AllVendors from "./pages/Admin/AllVendors";
+
+import "./App.css";
 function App() {
   return (
     <>

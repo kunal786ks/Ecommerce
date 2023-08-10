@@ -3,7 +3,9 @@ import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "./../../components/Layout/Layout";
 import axios from 'axios'
 import { useAuth } from "../../context/auth";
+import toast from "react-hot-toast";
 const Users = () => {
+  const [allow,setAllow]=useState(false)
   const [users,setUsers]=useState([]);
   const [auth]=useAuth();
   const getAllusers=async()=>{
@@ -15,20 +17,30 @@ const Users = () => {
           console.log(err);
       }
   }
-  useEffect(()=>{
-    // getAllusers();
-    if (auth?.token) getAllusers()
-  },[auth?.token])
-const deleteVendor=(id)=>{
+  
+ 
+const deleteVendor=async(id)=>{
   try{
     //todo
+    const { data } = await axios.delete(`/api/v1/auth/user/${id}`);
+    if(data.success===true){
+       return toast.success("Changes Updated Successfully") && setAllow(!allow)
+    }
+    setAllow(!allow)
+    console.log(data)
+    console.log(allow)
   }catch(err){
     console.log(err)
   }
 }
+useEffect(()=>{
+  // getAllusers();
+  if (auth?.token) getAllusers()
+  console.log('useeffect')
+},[auth?.token,allow])
   return (
-    <>
-      <div className="container-fluid m-3 p-3">
+    <Layout title={"Dashboard - Create Product"}>
+      <div  style={{marginTop:'80px'}} className="container-fluid ">
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
@@ -37,16 +49,18 @@ const deleteVendor=(id)=>{
             <h1>All Users</h1>
             {users?.map((p)=>(
               p.role===2 &&
-              <div style={{display:'flex',justifyContent:'space-between'}}>
-                <div>{p?.name}</div>
-                <button className="mx-2" onClick={deleteVendor(p?._id)}>disbale this user</button>
+              <div style={{display:'flex',justifyContent:'space-between',border:'1px dashed black',padding:'10px',marginBottom:'10px'}}>
+                <div>Vendor's Name: {p?.name}</div>
+                <div>Vendor's Name: {p?.email}</div>
+                <div>Joined At:{p?.createdAt}</div>
+                <button className="mx-2 disable" onClick={()=>deleteVendor(p?._id)} >{p?.disabled?"Enable Vendor":"Disable vendor"}</button>
                 </div>
             ))
             }
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 

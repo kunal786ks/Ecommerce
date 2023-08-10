@@ -81,6 +81,12 @@ export const loginController = async (req, res) => {
         message: "Email is not registerd",
       });
     }
+    if(user.disabled){
+      return res.status(204).send({
+        success: false,
+        message: "You are disabled by admin",
+      });
+    }
     const match = await comparePassword(password, user.password);
     if (!match) {
       return res.status(200).send({
@@ -234,17 +240,21 @@ export const getAllUsersController=async(req,res)=>{
 //delete specific user
 export const deleteUserController=async(req,res)=>{
   const {id}=req.params
+  const data=await userModel.findById(id);
+  console.log("this is from user disabed",data)
   try {
-    await userModel.findByIdAndDelete(id);
+    await userModel.findByIdAndUpdate(id,{
+      disabled:!data.disabled
+    },{new : true});
     res.status(200).send({
       success: true,
-      message: "Vendor Deleted successfully",
+      message: "Vendor Disabled successfully",
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error while deleting product",
+      message: "Error while disabling vendor",
       error,
     });
   }
