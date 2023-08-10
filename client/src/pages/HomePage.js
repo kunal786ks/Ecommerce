@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
 import "../styles/Homepage.css";
-
+import { Carousel } from 'antd';
 const HomePage = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
@@ -106,16 +106,65 @@ const HomePage = () => {
       console.log(error);
     }
   };
+  const contentStyle = {
+    height: '600px',
+    color: 'beige',
+    lineHeight: '160px',
+    textAlign: 'center',
+  };
   return (
     <Layout title={"ALl Products - Best offers "}>
       {/* banner image */}
-      <img
-        src="/images/banner.png"
+      {/* <img
+        src="https://i.pinimg.com/originals/51/cb/65/51cb6500edee52112b2be59c70576b95.gif"
         className="banner-img"
         alt="bannerimage"
-        width={"100%"}
-        style={{objectFit:'contain'}}
-      />
+        height='600px'
+        width="100%"
+        // style={{objectFit:'contain'}}
+      /> */}
+       <Carousel autoplay>
+    <div>
+      <h3 style={contentStyle}><img
+        src="https://marketplace.canva.com/EAFD-b6yF6g/1/0/1600w/canva-brown-%26-cream-modern-woman-fashion-collection-promo-banner-Vbn2VoCIVnA.jpg"
+        className="banner-img"
+        alt="bannerimage"
+        height='600px'
+        width="100%"
+        // style={{objectFit:'contain'}}
+      /></h3>
+    </div>
+    <div>
+      <h3 style={contentStyle}><img
+        src="https://marketplace.canva.com/EAFGKRRskMs/1/0/1600w/canva-brown-and-beige-minimalist-fashion-banner-lYcbGpUSVGo.jpg"
+        className="banner-img"
+        alt="bannerimage"
+        height='600px'
+        width="100%"
+        // style={{objectFit:'contain'}}
+      /></h3>
+    </div>
+    <div>
+      <h3 style={contentStyle}><img
+        src="https://img.freepik.com/premium-vector/flat-design-fashion-trends-sale-banner-template_23-2149938131.jpg?w=2000"
+        className="banner-img"
+        alt="bannerimage"
+        height='600px'
+        width="100%"
+        // style={{objectFit:'contain'}}
+      /></h3>
+    </div>
+    <div>
+      <h3 style={contentStyle}><img
+        src="https://img.freepik.com/free-vector/fashion-collection-style-twitter-header-template_23-2149956243.jpg?w=2000"
+        className="banner-img"
+        alt="bannerimage"
+        height='600px'
+        width="100%"
+        // style={{objectFit:'contain'}}
+      /></h3>
+    </div>
+  </Carousel>
       {/* banner image */}
       <div className="container-fluid row mt-3 home-page">
         <div className="col-md-3 filters">
