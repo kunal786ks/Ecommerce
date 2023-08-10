@@ -50,8 +50,9 @@ const Search = () => {
                         );
                         toast.success("Item Added to cart");
                       }}
+                      disabled={p.quantity<=0}
                     >
-                      ADD TO CART
+                      {p.quantity>0?"Add To Cart":"Out of Stock"}
                     </button>
                 </div>
               </div>

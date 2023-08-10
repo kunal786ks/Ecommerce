@@ -74,8 +74,9 @@ const ProductDetails = () => {
                         );
                         toast.success("Item Added to cart");
                       }}
+                      disabled={product.quantity<=0}
                     >
-                      ADD TO CART
+                     {product.quantity>0?"Add To Cart":"Out of Stock"}
                     </button>
         </div>
       </div>
