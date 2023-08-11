@@ -13,6 +13,7 @@ const Products = () => {
   const getAllProducts = async () => {
     try {
       const { data } = await axios.get("/api/v1/product/get-product");
+      console.log(data)
       setProducts(data.products);
     } catch (error) {
       console.log(error);
@@ -35,7 +36,7 @@ const Products = () => {
           <div className="d-flex flex-wrap">
             {auth?.user?.role===1 ? products?.map((p) => (
               <Link
-                key={p._id}
+                key={p?._id}
                 to={`/dashboard/admin/product/${p.slug}`}
                 className="product-link"
               >
@@ -53,7 +54,8 @@ const Products = () => {
                   <div className="card-body">
                     <h5 className="card-title">{p.name}</h5>
                     <p className="card-text des">{p.description}</p>
-                    <p>Added By: {p.createdBy.name}</p>
+                    <p>Added By = {p?.createdBy?.name}</p>
+                    {/* <p>Added By: {p.createdBy.name}</p> */}
                   </div>
                 </div>
               </Link>
