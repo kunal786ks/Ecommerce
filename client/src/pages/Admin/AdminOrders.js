@@ -20,8 +20,10 @@ const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
   const [stock,setStock]=useState(false);
   const [auth, setAuth] = useAuth();
+  const [loading,setLoading]=useState(false);
   const getOrders = async () => {
     try {
+      
       const { data } = await axios.get("/api/v1/auth/all-orders");
       console.log(data)
       setOrders(data);
@@ -44,7 +46,9 @@ const AdminOrders = () => {
   };
   const updateStock=async(id)=>{
     try{
+      setLoading(true);
       const {data}=await axios.delete(`/api/v1/product/update/${id}`)
+      setLoading(false)
       setStock(!stock)
       console.log(data);
       toast.success(data.message)
@@ -118,7 +122,7 @@ const AdminOrders = () => {
                         <p>{p.description.substring(0, 30)}</p>
                         <p>Price : {p.price}</p>
                         <p>No of items left in stock: {p.quantity}</p>
-                        {p.quantity>0 && o.status==='deliverd' && <button onClick={()=>updateStock(p._id)}>stock</button>}
+                        {p.quantity>0 && o.status==='deliverd' && <button onClick={()=>updateStock(p._id)} disabled={loading}>Update stock</button>}
                       </div>
                     </div>
                   ))}

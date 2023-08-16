@@ -124,7 +124,7 @@ const VendorOrders = () => {
                         <p>{p.description.substring(0, 30)}</p>
                         <p>Price : {p.price}</p>
                         <p>No of items left in stock: {p.quantity}</p>
-                        {p.quantity>0 && o.status==='deliverd' && <button style={{padding:'6px 22px',border:'none',borderRadius:'100px'}}onClick={()=>updateStock(p._id)}>stock</button>}
+                        {p.quantity>0 && o.status==='deliverd' && <button style={{padding:'6px 22px',border:'none',borderRadius:'100px'}}onClick={()=>updateStock(p._id)}>Update stock</button>}
                       </div>
                     </div>
                   ))}

@@ -13,7 +13,7 @@ const Products = () => {
   const getAllProducts = async () => {
     try {
       const { data } = await axios.get("/api/v1/product/get-product");
-      console.log(data)
+      console.log("this is products",data)
       setProducts(data.products);
     } catch (error) {
       console.log(error);
