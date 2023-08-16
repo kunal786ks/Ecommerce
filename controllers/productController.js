@@ -314,6 +314,17 @@ export const searchProductController = async (req, res) => {
 export const updateLeftController=async(req,res)=>{
   const {id}=req.params;
   const data=await productModel.findById(id);
+
+ if(data.quantity <= 0) 
+ {
+  res.status(200).send({
+    success: true,
+    message: "updated stock"
+  })
+  return;
+ }
+
+
   try{
     await productModel.findByIdAndUpdate(id,{
      quantity:data.quantity-1 ,
